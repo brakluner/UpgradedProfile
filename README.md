@@ -1,2 +1,1 @@
-# UpgradedProfile
-Pdf generated from github page
+This is a preliminary blueprint towards creating a pdf filling app run on console.

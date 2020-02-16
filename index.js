@@ -27,8 +27,12 @@ async function getName() {
     } catch (err) {
       console.log(err);
     }
-
-    const output = result
-    await writeFileAsync("index.pdf", output)
+    printName();
   
   } 
+
+  async function printName(result) {
+    
+    const output = result
+    await writeFileAsync("index.pdf", output)
+  }
