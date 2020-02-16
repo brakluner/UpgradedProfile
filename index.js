@@ -20,19 +20,21 @@ async function getName() {
     }).then(function({ userName }) {
       const queryUrl = `https://api.github.com/users/${userName}`;
       axios.get(queryUrl).then(function(result) {
-        console.log(result);
+        console.log(result.data);
+        printName(result);
         });
   
       })
     } catch (err) {
       console.log(err);
     }
-    printName();
+    
   
   } 
 
   async function printName(result) {
     
-    const output = result
-    await writeFileAsync("index.pdf", output)
+    const output = result.data
+    await writeFileAsync("index.pdf", JSON.stringify(output))
+    console.log(output)
   }
