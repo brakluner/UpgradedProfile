@@ -38,6 +38,9 @@ async function getName() {
     ${result.data.avatar_url}
     Public Repos:${result.data.public_repos}
     Followers:${result.data.followers}
+    Location:${result.data.location}
+    Blog:${result.data.blog}
+    web-site ${result.data.html_url}
     `
     await writeFileAsync("index.pdf", output)
     console.log(output)
