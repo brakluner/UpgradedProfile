@@ -18,20 +18,17 @@ async function getName() {
     //    message: "Whats ur fave color",
     //    name: "userColor"
     }).then(function({ userName }) {
-      const queryUrl = `https://api.github.com/users/${userName}/repos?per_page=100`;
+      const queryUrl = `https://api.github.com/users/${userName}`;
       axios.get(queryUrl).then(function(result) {
-        const outputArray = result.data.map(function(datum) {
-          return datum.name
+        console.log(result);
         });
-  console.log(result);
+  
       })
-    const output = `
-        ${outputArray}
-        `
+    } catch (err) {
+      console.log(err);
+    }
+
+    const output = result
     await writeFileAsync("index.pdf", output)
-    })
-    console.log(userName)
-  } catch (err) {
-    console.log(err);
-  }
-}
+  
+  } 
