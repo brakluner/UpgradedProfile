@@ -34,7 +34,9 @@ async function getName() {
 
   async function printName(result) {
     
-    const output = result.data
-    await writeFileAsync("index.pdf", JSON.stringify(output))
+    const output = `Profile Name:${result.data.login}
+    <img href="${result.data.avatar_url}>
+    `
+    await writeFileAsync("index.pdf", output)
     console.log(output)
   }
