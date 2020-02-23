@@ -1,9 +1,10 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const util = require("util");
+const open = require("open");
 const axios = require("axios");
+const convertFactory = require("electron-html-to");
+const path = require("path");
 
-const writeFileAsync = util.promisify(fs.writeFile);
 
 
 getData();
@@ -282,7 +283,27 @@ console.log(userColor)
    </body>
 </html>
     `
-    writeFileAsync("index.pdf", output)
     console.log(output)
+render();
+    function render() {
+      const conversion = convertFactory({
+        converterPath: convertFactory.converters.PDF
+      });
+
+      conversion({ html: output }, function(err, result) {
+        if (err) {
+          return console.error(err);
+        }
+
+        result.stream.pipe(
+          fs.createWriteStream(path.join(__dirname, "index.pdf"))
+        );
+        conversion.kill();
+      });
+
+      open(path.join(process.cwd(), "index.pdf"));
+    };
   }
+   
+  
 
