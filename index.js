@@ -5,32 +5,6 @@ const axios = require("axios");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const userColor = {
-  red: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  green: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  purple: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
 
 getData();
 
@@ -46,24 +20,51 @@ function getData() {
       message: "Whats ur fave color",
       name: "userColor",
       choices: [
-        "Red",
-        "Blue",
-        "Green",
-        "Purple"
+        "red",
+        "blue",
+        "green",
+        "purple"
       ]
     },
-    ]).then(function({ userName }) {
+    ]).then(function({ userName, userColor }) {
       const queryUrl = `https://api.github.com/users/${userName}`;
       axios.get(queryUrl).then(function(result) {
         console.log(result.data);
-        printName(result);
+        printName(result, userColor);
         });
-  console.log(`${this.userColor.wrapperBackground}`)
+  console.log(userColor)
       })
     }  
 
-  async function printName(result, userColor) {
-    
+function printName(result, userColor) {
+console.log(userColor)
+  const color = {
+    red: {
+      wrapperBackground: "#ff0052",
+      headerBackground: "#ff5200",
+      headerColor: "black",
+      photoBorderColor: "#black"
+    },
+    blue: {
+      wrapperBackground: "#22dcff",
+      headerBackground: "#2289ff",
+      headerColor: "white",
+      photoBorderColor: "#6b7aaf"
+    },
+    green: {
+      wrapperBackground: "#00ffbb",
+      headerBackground: "#00ba1f",
+      headerColor: "white",
+      photoBorderColor: "#4bffa8"
+    },
+    purple: {
+      wrapperBackground: "#bd4bff",
+      headerBackground: "#9200b2",
+      headerColor: "white",
+      photoBorderColor: "#eb8eff"
+    }
+  };
+  
     const output = `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -90,7 +91,7 @@ function getData() {
          height: 100%;
          }
          .wrapper {
-         background-color: ${this.wrapperBackground};
+         background-color: ${color[userColor].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -132,8 +133,8 @@ function getData() {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${this.headerBackground};
-         color: ${this.headerColor};
+         background-color: ${color[userColor].headerBackground};
+         color: ${color[userColor].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -144,7 +145,7 @@ function getData() {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${this.photoBorderColor};
+         border: 6px solid ${color[userColor].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -187,8 +188,8 @@ function getData() {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${this.headerBackground};
-           color: ${this.headerColor};
+           background-color: ${color[userColor].headerBackground};
+           color: ${color[userColor].headerColor};
            margin: 20px;
          }
          
