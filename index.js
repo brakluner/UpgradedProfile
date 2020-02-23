@@ -294,7 +294,6 @@ render();
         if (err) {
           return console.error(err);
         }
-
         result.stream.pipe(
           fs.createWriteStream(path.join(__dirname, "index.pdf"))
         );
