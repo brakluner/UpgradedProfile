@@ -1,0 +1,19 @@
+{
+  "name": "upgradedportfolio",
+  "version": "1.0.0",
+  "description": "This is a preliminary blueprint towards creating a pdf filling app run on console.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "electron-html-to": "^2.6.0",
+    "fs": "0.0.1-security",
+    "inquirer": "^7.0.4",
+    "open": "^7.0.2",
+    "path": "^0.12.7"
+  }
+}
